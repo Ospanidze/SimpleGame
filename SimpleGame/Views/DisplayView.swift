@@ -78,9 +78,6 @@ final class DisplayView: UIView {
         addSubview(numberLabel)
         addSubview(timerLabel)
     }
-    
-    
-    
 }
 
 extension DisplayView {
@@ -98,8 +95,6 @@ extension DisplayView {
             timerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             timerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             timerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
-            
-            
         ])
     }
 }

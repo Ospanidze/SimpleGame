@@ -1,106 +1,97 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  SimpleGame
 //
-//  Created by Айдар Оспанов on 08.05.2023.
+//  Created by Айдар Оспанов on 28.06.2023.
 //
 
 import UIKit
-
+ 
 final class MainViewController: UIViewController {
     
-    fileprivate var mainView: MainView {
-        guard let view = self.view as? MainView else {
-            return MainView()
-        }
-        return view
-    }
+    private let titles = ["Новая Игра", "Настройки", "Рекорд"]
     
-    private lazy var game = Game(
-        countItems: mainView.keyboardView.gameButtons.count, time: 30) { [weak self] status, seconds in
-            self?.mainView.displayView.setupTimerLabel(text: seconds.secondsToString())
-            self?.updateInfoGame(with: status)
-    }
+    private let baseStackView = UIStackView()
+        .styleStackView(
+            spacing: 10,
+            aligment: .fill,
+            axis: .vertical,
+            distribution: .fillEqually,
+            userInteraction: true
+        )
+        .setlayoutMargins(top: 10, left: 12, right: 12, bottom: 10)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupScreen()
-        mainView.keyboardView.delegate = self
-        mainView.mainViewDelegate = self
-    }
-    
-    override func loadView() {
-        super.loadView()
-        view = MainView(frame: UIScreen.main.bounds)
-    }
-    
-    private func setupScreen() {
-        for index in game.items.indices {
-            let button = mainView.keyboardView.gameButtons[index]
-            
-            button.setTitle(game.items[index].title, for: .normal)
+        view.backgroundColor = .systemGray6
+        setupNavigationBar()
+        setupStackView()
+        addSubviews()
+        setupLayout()
         
-            button.alpha = 1
-            button.isEnabled = true
+    }
+    
+    private func addSubviews() {
+        view.addSubview(baseStackView)
+    }
+    
+    private func createButton(title: String, type: Int) -> UIButton {
+        let button: GameButton
+        
+        button = GameButton(
+            model: ModelGameButton(
+                title: title,
+                font: UIFont.systemFont(ofSize: 24, weight: .medium),
+                backgroundColor: .clear,
+                titleColor: .blue
+            ),
+            typeNumber: type
+        )
+        button.addTarget(self, action: #selector(action), for: .touchUpInside)
+        
+        return button
+    }
+    
+    @objc private func action(sender: GameButton) {
+        switch sender.typeNumber {
+        case 0:
+            let gameVC = GameViewController()
+            navigationController?.pushViewController(gameVC, animated: true)
+        default:
+            break
         }
-        
-        mainView.displayView.setupNumberLabel(text: game.nextItem?.title ?? "")
     }
     
-    private func update() {
-        for index in game.items.indices {
-            let gameButton = mainView.keyboardView.gameButtons[index]
-            //gameButton.isHidden = game.items[index].isFound
-            
-            gameButton.alpha = game.items[index].isFound ? 0 : 1
-            gameButton.isEnabled = !game.items[index].isFound
-            
-            if game.items[index].isError {
-                UIView.animate(withDuration: 0.3) { [weak self] in
-                    self?.mainView.keyboardView.gameButtons[index].backgroundColor = .red
-                } completion: { [weak self] _ in
-                    self?.mainView.keyboardView.gameButtons[index].backgroundColor = .white
-                    self?.game.items[index].isError = false
-                }
-            }
-        }
-        
-        mainView.displayView.setupNumberLabel(text: game.nextItem?.title ?? "")
-        
-        updateInfoGame(with: game.status)
-    }
-    
-    private func updateInfoGame(with status: Status) {
-        let display = mainView.displayView
-        
-        switch status {
-        case .start:
-            display.setupTitleLable(text: "Игра началась", color: .black)
-            mainView.setupButton(true)
-        case .win:
-            display.setupTitleLable(text: "Вы выиграли!", color: .green)
-            mainView.setupButton(false)
-        case .lose:
-            display.setupTitleLable(text: "Вы проиграли:(", color: .red)
-            mainView.setupButton(false)
+    private func setupStackView() {
+        for (index, title) in titles.enumerated() {
+            let button = createButton(title: title, type: index)
+            baseStackView.addArrangedSubview(button)
         }
     }
 }
 
-extension MainViewController: KeyboardViewDelegate {
-    func onAction(sender: GameButton) {
-        guard let buttonIndex = mainView.keyboardView.gameButtons
-            .firstIndex(of: sender) else { return }
-        game.check(index: buttonIndex)
-        update()
+extension MainViewController {
+    
+    private func setupLayout() {
+        NSLayoutConstraint.activate([
+            baseStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            baseStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+    }
+    
+    private func setupNavigationBar() {
+        title = "Меню"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.backgroundColor = UIColor(named: "MilkBlue") ?? .black
+        
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        navigationController?.navigationBar.tintColor = .white
     }
 }
 
-extension MainViewController: MainViewDelegate {
-    func newGameAction(sender: UIButton) {
-        game.newGame()
-        
-        sender.isHidden = true
-        setupScreen()
-    }
-}
