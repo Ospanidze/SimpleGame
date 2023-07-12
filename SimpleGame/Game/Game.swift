@@ -22,6 +22,8 @@ class Game {
     
     var nextItem: Item?
     
+    var bestRecord = 0
+    
     var status: Status = .start {
         didSet {
             if status != .start {
@@ -69,6 +71,7 @@ class Game {
         
         if nextItem == nil {
             status = .win
+            bestRecord = secondsGame
         }
     }
     

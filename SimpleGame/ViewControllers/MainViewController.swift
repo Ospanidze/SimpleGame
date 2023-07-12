@@ -43,7 +43,7 @@ final class MainViewController: UIViewController {
                 title: title,
                 font: UIFont.systemFont(ofSize: 24, weight: .medium),
                 backgroundColor: .clear,
-                titleColor: .blue
+                titleColor: UIColor(named: "MilkBlue") ?? .blue
             ),
             typeNumber: type
         )
@@ -57,6 +57,9 @@ final class MainViewController: UIViewController {
         case 0:
             let gameVC = GameViewController()
             navigationController?.pushViewController(gameVC, animated: true)
+        case 2:
+            let recordList = RecordListController()
+            navigationController?.pushViewController(recordList, animated: true)
         default:
             break
         }

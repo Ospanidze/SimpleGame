@@ -7,7 +7,14 @@
 
 import UIKit
 
+//protocol GameViewControllerDelegate {
+//    func add(record: String)
+//}
+
 final class GameViewController: UIViewController {
+    
+    var time: Int?
+    //var delegate: GameViewControllerDelegate?
     
     fileprivate var mainView: MainView {
         guard let view = self.view as? MainView else {
@@ -16,8 +23,10 @@ final class GameViewController: UIViewController {
         return view
     }
     
+    private let storageManager = StorageManager.shared
+    
     private lazy var game = Game(
-        countItems: mainView.keyboardView.gameButtons.count, time: 30) { [weak self] status, seconds in
+        countItems: mainView.keyboardView.gameButtons.count, time: time ?? 50) { [weak self] status, seconds in
             self?.mainView.displayView.setupTimerLabel(text: seconds.secondsToString())
             self?.updateInfoGame(with: status)
     }
@@ -27,6 +36,7 @@ final class GameViewController: UIViewController {
         setupScreen()
         mainView.keyboardView.delegate = self
         mainView.mainViewDelegate = self
+        print(game.bestRecord)
     }
     
     override func loadView() {
@@ -80,10 +90,16 @@ final class GameViewController: UIViewController {
         case .win:
             display.setupTitleLable(text: "Вы выиграли!", color: .green)
             mainView.setupButton(false)
+            save()
         case .lose:
             display.setupTitleLable(text: "Вы проиграли:(", color: .red)
             mainView.setupButton(false)
         }
+    }
+    
+    private func save() {
+        storageManager.save(record: "\(game.bestRecord)")
+        //delegate?.add(record: "\(game.bestRecord)")
     }
     
     deinit {

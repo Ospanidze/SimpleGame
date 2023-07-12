@@ -24,7 +24,7 @@ final class DisplayView: UIView {
     private let numberLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
-        label.textColor = .blue
+        label.textColor = UIColor(named: "MilkBlue") ?? .blue
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
