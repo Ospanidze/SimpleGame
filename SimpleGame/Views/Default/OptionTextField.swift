@@ -11,10 +11,11 @@ class OptionTextField: UITextField {
     
     private let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     
-    init(placeholder: String) {
+    init(placeholder: String, keyboardType: UIKeyboardType = .default) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         setupTextField(placeholder: placeholder)
+        self.keyboardType = keyboardType
     }
     
     required init?(coder: NSCoder) {

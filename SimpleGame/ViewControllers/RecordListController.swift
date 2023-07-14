@@ -9,37 +9,43 @@ import UIKit
 
 final class RecordListController: UITableViewController {
     
-    private let storageManager = StorageManager.shared
-    private var records: [String] = []
+    private let storeManager = StoreManager.shared
+    private var options: [Option] = []
     //private let gameVC = GameViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Рекорд"
         view.backgroundColor = .white
-        records = storageManager.fetchRecords()
+        options = storeManager.fetchOption()
         //tableView.select
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Record")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        records.count
+        options.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let record = records.sorted(by: <)[indexPath.row]
+        let option = options[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Record", for: indexPath)
         cell.selectionStyle = .none
         var content = cell.defaultContentConfiguration()
-        content.text = record
+        content.text = option.name
+        content.secondaryText = "\(option.time)"
         cell.contentConfiguration = content
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            storeManager.deleteOption(at: indexPath.row)
+            options.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+        }
+    }
     
 //    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
 //        UITableViewCell.EditingStyle.none

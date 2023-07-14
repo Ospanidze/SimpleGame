@@ -11,6 +11,8 @@
 		EF1B6EBA2A237B8E000AE4BB /* UIStackView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B6EB92A237B8E000AE4BB /* UIStackView + ext.swift */; };
 		EF6CAA212A615D29001D363A /* OptionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6CAA202A615D29001D363A /* OptionTextField.swift */; };
 		EF6CAA232A6161B0001D363A /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6CAA222A6161B0001D363A /* OptionViewController.swift */; };
+		EF6CAA252A616E31001D363A /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6CAA242A616E31001D363A /* Option.swift */; };
+		EF6CAA282A616E93001D363A /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6CAA272A616E93001D363A /* StoreManager.swift */; };
 		EF753AA12A08DE9C0011B561 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF753AA02A08DE9C0011B561 /* AppDelegate.swift */; };
 		EF753AA32A08DE9C0011B561 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF753AA22A08DE9C0011B561 /* SceneDelegate.swift */; };
 		EF753AA52A08DE9C0011B561 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF753AA42A08DE9C0011B561 /* GameViewController.swift */; };
@@ -34,6 +36,8 @@
 		EF1B6EB92A237B8E000AE4BB /* UIStackView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + ext.swift"; sourceTree = "<group>"; };
 		EF6CAA202A615D29001D363A /* OptionTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTextField.swift; sourceTree = "<group>"; };
 		EF6CAA222A6161B0001D363A /* OptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionViewController.swift; sourceTree = "<group>"; };
+		EF6CAA242A616E31001D363A /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		EF6CAA272A616E93001D363A /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		EF753A9D2A08DE9C0011B561 /* SimpleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF753AA02A08DE9C0011B561 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF753AA22A08DE9C0011B561 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,12 +109,20 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		EF6CAA1F2A615D01001D363A /* DefaultView */ = {
+		EF6CAA1F2A615D01001D363A /* Default */ = {
 			isa = PBXGroup;
 			children = (
 				EF6CAA202A615D29001D363A /* OptionTextField.swift */,
 			);
-			path = DefaultView;
+			path = Default;
+			sourceTree = "<group>";
+		};
+		EF6CAA262A616E37001D363A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CAA242A616E31001D363A /* Option.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EF753A942A08DE9C0011B561 = {
@@ -133,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				EF1B6EB32A237511000AE4BB /* App */,
+				EF6CAA262A616E37001D363A /* Model */,
 				EFCF9FFE2A5EF989002C1708 /* StorageManager */,
 				EFF603122A4B2C9700E0BA7B /* Protocol */,
 				EFF603052A4AF23000E0BA7B /* Game */,
@@ -149,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				EFCF9FFF2A5EF9AF002C1708 /* StorageManager.swift */,
+				EF6CAA272A616E93001D363A /* StoreManager.swift */,
 			);
 			path = StorageManager;
 			sourceTree = "<group>";
@@ -172,7 +186,7 @@
 		EFF6030D2A4AFA1C00E0BA7B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EF6CAA1F2A615D01001D363A /* DefaultView */,
+				EF6CAA1F2A615D01001D363A /* Default */,
 				EFF6030B2A4AFA1700E0BA7B /* MainView.swift */,
 				EFF6030E2A4B022000E0BA7B /* DisplayView.swift */,
 				EFF603102A4B04C200E0BA7B /* KeyboardView.swift */,
@@ -265,6 +279,7 @@
 				EFF6030C2A4AFA1700E0BA7B /* MainView.swift in Sources */,
 				EFF603112A4B04C200E0BA7B /* KeyboardView.swift in Sources */,
 				EFF6030A2A4AF5DB00E0BA7B /* GameButton.swift in Sources */,
+				EF6CAA252A616E31001D363A /* Option.swift in Sources */,
 				EFF603072A4AF24700E0BA7B /* Game.swift in Sources */,
 				EF87A1332A4C7087009E66F6 /* MainViewController.swift in Sources */,
 				EFF603142A4B2CBE00E0BA7B /* KeyboardViewDelegate.swift in Sources */,
@@ -275,6 +290,7 @@
 				EFF603182A4B5B3700E0BA7B /* MainViewDelegate.swift in Sources */,
 				EF753AA32A08DE9C0011B561 /* SceneDelegate.swift in Sources */,
 				EF1B6EBA2A237B8E000AE4BB /* UIStackView + ext.swift in Sources */,
+				EF6CAA282A616E93001D363A /* StoreManager.swift in Sources */,
 				EFCF9FFD2A5EE386002C1708 /* RecordListController.swift in Sources */,
 				EFCFA0002A5EF9AF002C1708 /* StorageManager.swift in Sources */,
 			);

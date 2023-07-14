@@ -13,8 +13,12 @@ import UIKit
 
 final class GameViewController: UIViewController {
     
-    var time: Int?
-    //var delegate: GameViewControllerDelegate?
+    private let storeManager = StoreManager.shared
+    private var option: Option?
+    
+    private var time: Int?
+    
+    //private let optionVC = OptionViewController()
     
     fileprivate var mainView: MainView {
         guard let view = self.view as? MainView else {
@@ -23,10 +27,10 @@ final class GameViewController: UIViewController {
         return view
     }
     
-    private let storageManager = StorageManager.shared
+    //private let storageManager = StorageManager.shared
     
     private lazy var game = Game(
-        countItems: mainView.keyboardView.gameButtons.count, time: time ?? 50) { [weak self] status, seconds in
+        countItems: mainView.keyboardView.gameButtons.count, time: option?.time ?? 50) { [weak self] status, seconds in
             self?.mainView.displayView.setupTimerLabel(text: seconds.secondsToString())
             self?.updateInfoGame(with: status)
     }
@@ -36,12 +40,14 @@ final class GameViewController: UIViewController {
         setupScreen()
         mainView.keyboardView.delegate = self
         mainView.mainViewDelegate = self
+        //optionVC.delegate = self
         print(game.bestRecord)
     }
     
     override func loadView() {
         super.loadView()
         view = MainView(frame: UIScreen.main.bounds)
+        option = storeManager.fetchOption().last
     }
     
     private func setupScreen() {
@@ -90,17 +96,17 @@ final class GameViewController: UIViewController {
         case .win:
             display.setupTitleLable(text: "Вы выиграли!", color: .green)
             mainView.setupButton(false)
-            save()
+//            save()
         case .lose:
             display.setupTitleLable(text: "Вы проиграли:(", color: .red)
             mainView.setupButton(false)
         }
     }
     
-    private func save() {
-        storageManager.save(record: "\(game.bestRecord)")
-        //delegate?.add(record: "\(game.bestRecord)")
-    }
+//    private func save() {
+//        storageManager.save(record: "\(game.bestRecord)")
+//        //delegate?.add(record: "\(game.bestRecord)")
+//    }
     
     deinit {
         print("ViewController is deleted")
@@ -124,3 +130,10 @@ extension GameViewController: MainViewDelegate {
         setupScreen()
     }
 }
+
+//extension GameViewController: GameViewControllerDelegate {
+//    func add(option: Option) {
+//        time = option.time
+//        //mainView.keyboardView.num = option.button
+//    }
+//}

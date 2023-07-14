@@ -13,7 +13,7 @@ final class KeyboardView: UIView {
     
     weak var delegate: KeyboardViewDelegate?
     
-    private let nums = Array(1...16)
+    private let num: Int = 16
     
     private let rowInStackView = 4
     
@@ -73,8 +73,9 @@ final class KeyboardView: UIView {
     private func createStackViewNumber(element: UIButton) {
         
         gameButtons.append(element)
-         
-        guard gameButtons.count == nums.count else { return }
+        
+        
+        guard gameButtons.count == num else { return }
         
         var count = 0
         var row = 4
@@ -103,10 +104,17 @@ final class KeyboardView: UIView {
     
     private func createPostionButtons () {
         
-        for num in nums {
-            let button = createButton(type: num)
+        for number in 1...num  {
+            let button = createButton(type: number)
             createStackViewNumber(element: button)
         }
+    }
+    
+    private func checkNumber(num: Int?) -> Int {
+        guard let num = num else { return 16 }
+        guard num > 0 else { return 16 }
+        guard num % 4 == 0 else { return  16 }
+        return num / 4
     }
     
 }
