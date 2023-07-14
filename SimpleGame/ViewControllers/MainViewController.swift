@@ -57,11 +57,12 @@ final class MainViewController: UIViewController {
         case 0:
             let gameVC = GameViewController()
             navigationController?.pushViewController(gameVC, animated: true)
-        case 2:
+        case 1:
+            let optionVC = OptionViewController()
+            navigationController?.pushViewController(optionVC, animated: true)
+        default:
             let recordList = RecordListController()
             navigationController?.pushViewController(recordList, animated: true)
-        default:
-            break
         }
     }
     

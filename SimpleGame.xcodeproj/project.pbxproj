@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		EF1B6EB82A2378DA000AE4BB /* UIButton + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B6EB72A2378DA000AE4BB /* UIButton + ext.swift */; };
 		EF1B6EBA2A237B8E000AE4BB /* UIStackView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B6EB92A237B8E000AE4BB /* UIStackView + ext.swift */; };
+		EF6CAA212A615D29001D363A /* OptionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6CAA202A615D29001D363A /* OptionTextField.swift */; };
+		EF6CAA232A6161B0001D363A /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6CAA222A6161B0001D363A /* OptionViewController.swift */; };
 		EF753AA12A08DE9C0011B561 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF753AA02A08DE9C0011B561 /* AppDelegate.swift */; };
 		EF753AA32A08DE9C0011B561 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF753AA22A08DE9C0011B561 /* SceneDelegate.swift */; };
 		EF753AA52A08DE9C0011B561 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF753AA42A08DE9C0011B561 /* GameViewController.swift */; };
@@ -30,6 +32,8 @@
 /* Begin PBXFileReference section */
 		EF1B6EB72A2378DA000AE4BB /* UIButton + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + ext.swift"; sourceTree = "<group>"; };
 		EF1B6EB92A237B8E000AE4BB /* UIStackView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + ext.swift"; sourceTree = "<group>"; };
+		EF6CAA202A615D29001D363A /* OptionTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTextField.swift; sourceTree = "<group>"; };
+		EF6CAA222A6161B0001D363A /* OptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionViewController.swift; sourceTree = "<group>"; };
 		EF753A9D2A08DE9C0011B561 /* SimpleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF753AA02A08DE9C0011B561 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF753AA22A08DE9C0011B561 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 				EF87A1322A4C7087009E66F6 /* MainViewController.swift */,
 				EF753AA42A08DE9C0011B561 /* GameViewController.swift */,
 				EFCF9FFC2A5EE386002C1708 /* RecordListController.swift */,
+				EF6CAA222A6161B0001D363A /* OptionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -98,6 +103,14 @@
 				EFF603152A4B4B1C00E0BA7B /* Int + ext.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		EF6CAA1F2A615D01001D363A /* DefaultView */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CAA202A615D29001D363A /* OptionTextField.swift */,
+			);
+			path = DefaultView;
 			sourceTree = "<group>";
 		};
 		EF753A942A08DE9C0011B561 = {
@@ -159,6 +172,7 @@
 		EFF6030D2A4AFA1C00E0BA7B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EF6CAA1F2A615D01001D363A /* DefaultView */,
 				EFF6030B2A4AFA1700E0BA7B /* MainView.swift */,
 				EFF6030E2A4B022000E0BA7B /* DisplayView.swift */,
 				EFF603102A4B04C200E0BA7B /* KeyboardView.swift */,
@@ -255,6 +269,8 @@
 				EF87A1332A4C7087009E66F6 /* MainViewController.swift in Sources */,
 				EFF603142A4B2CBE00E0BA7B /* KeyboardViewDelegate.swift in Sources */,
 				EF1B6EB82A2378DA000AE4BB /* UIButton + ext.swift in Sources */,
+				EF6CAA212A615D29001D363A /* OptionTextField.swift in Sources */,
+				EF6CAA232A6161B0001D363A /* OptionViewController.swift in Sources */,
 				EF753AA12A08DE9C0011B561 /* AppDelegate.swift in Sources */,
 				EFF603182A4B5B3700E0BA7B /* MainViewDelegate.swift in Sources */,
 				EF753AA32A08DE9C0011B561 /* SceneDelegate.swift in Sources */,
