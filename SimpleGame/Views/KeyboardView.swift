@@ -13,7 +13,7 @@ final class KeyboardView: UIView {
     
     weak var delegate: KeyboardViewDelegate?
     
-    private let num: Int = 16
+    private let num = 16
     
     private let rowInStackView = 4
     
@@ -71,16 +71,15 @@ final class KeyboardView: UIView {
     }
     
     private func createStackViewNumber(element: UIButton) {
-        
         gameButtons.append(element)
-        
-        
         guard gameButtons.count == num else { return }
         
-        var count = 0
-        var row = 4
+        guard num % 4 == 0 && num > 0 else { return }
         
-        for _ in 0..<rowInStackView {
+        var count = 0
+        var inRow = 4
+        
+        for _ in 0..<num / 4 {
             
             let stackView = UIStackView()
                 .styleStackView(
@@ -91,13 +90,13 @@ final class KeyboardView: UIView {
                     userInteraction: true
                 )
             
-            while count < row {
+            while count < inRow {
                 stackView.addArrangedSubview(gameButtons[count])
                 count += 1
             }
             
             mainStackView.addArrangedSubview(stackView)
-            row += rowInStackView
+            inRow += rowInStackView
         }
         
     }
